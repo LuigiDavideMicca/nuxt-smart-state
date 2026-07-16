@@ -1,0 +1,59 @@
+{
+  "name": "nuxt-smart-state",
+  "version": "0.1.0",
+  "description": "Nuxt module for vue-smart-state: auto-imported, SSR-safe useSmartState composable with persistence, cross-tab sync, TTL and debounced writes.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.mts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "nuxt-module-build build",
+    "dev:prepare": "nuxt-module-build build --stub",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "nuxt",
+    "nuxt3",
+    "nuxt-module",
+    "vue",
+    "state",
+    "useState",
+    "composable",
+    "persistent",
+    "localStorage",
+    "cross-tab",
+    "ttl",
+    "ssr"
+  ],
+  "author": "Luigi Davide Micca <luigimicca94@gmail.com> (https://luigimicca.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuigiDavideMicca/nuxt-smart-state.git"
+  },
+  "homepage": "https://github.com/LuigiDavideMicca/nuxt-smart-state#readme",
+  "bugs": {
+    "url": "https://github.com/LuigiDavideMicca/nuxt-smart-state/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.15.0",
+    "vue-smart-state": "^0.1.0"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^0.8.4",
+    "nuxt": "^3.15.0",
+    "typescript": "^5.9.3"
+  }
+}
