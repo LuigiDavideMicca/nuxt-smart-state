@@ -35,7 +35,22 @@ const [theme, setTheme] = useSmartState<'light' | 'dark'>('light', {
 
 All [`vue-smart-state` options](https://github.com/LuigiDavideMicca/vue-smart-state#options) are available: `persist`, `storageType`, `ttl`, `writeDebounce`, `serializer`, `syncTabs`, `shallow`, `deepWatch`, `onError`, plus the `reset()`/`clear()` controls as the third tuple element.
 
-SSR is handled for you: on the server the composable skips storage entirely and starts from the initial value; on the client it hydrates from storage.
+## Server → client payload, included
+
+Values set during SSR travel to the client through the Nuxt payload — like Nuxt's own `useState` — and *then* keep all the smart behaviour on the client:
+
+```ts
+const [locale, setLocale] = useSmartState('en', {
+  persist: true,
+  storageKey: 'locale'
+})
+
+if (import.meta.server) {
+  setLocale(detectFromHeaders()) // reaches the client in the payload
+}
+```
+
+Precedence on the client is deliberate: **a value the visitor persisted on their device wins over the server-computed one**, which wins over the initial value. Payload transfer is keyed on `storageKey` (override with `payloadKey`, or disable it with `payloadKey: false`); like Nuxt's `useState`, it requires JSON-serializable values.
 
 ## Why the alias?
 
@@ -43,11 +58,11 @@ Nuxt already ships its own `useState` — a *server-side, payload-shared* state 
 
 | | Nuxt `useState` | `useSmartState` |
 | --- | --- | --- |
-| Shared server → client via payload | ✅ | ❌ |
+| Shared server → client via payload | ✅ | ✅ |
 | Persisted across sessions (storage) | ❌ | ✅ |
 | Cross-tab sync, TTL, debounced writes | ❌ | ✅ |
 
-They complement each other: reach for Nuxt's `useState` for per-request server state, and for `useSmartState` when the value belongs to the browser.
+Reach for Nuxt's `useState` for purely per-request server state; reach for `useSmartState` when the value also belongs to the browser.
 
 ## License
 

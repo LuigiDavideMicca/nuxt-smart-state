@@ -1,4 +1,4 @@
-import { addImports, defineNuxtModule } from '@nuxt/kit'
+import { addImports, createResolver, defineNuxtModule } from '@nuxt/kit'
 
 export default defineNuxtModule({
   meta: {
@@ -9,10 +9,15 @@ export default defineNuxtModule({
     }
   },
   setup() {
+    const resolver = createResolver(import.meta.url)
     // Aliased: Nuxt ships its own (server-oriented) useState.
     addImports([
-      { name: 'useState', as: 'useSmartState', from: 'vue-smart-state' },
-      { name: 'UseStateOptions', as: 'UseSmartStateOptions', from: 'vue-smart-state', type: true }
+      { name: 'useSmartState', from: resolver.resolve('./runtime/useSmartState') },
+      {
+        name: 'UseSmartStateOptions',
+        from: resolver.resolve('./runtime/useSmartState'),
+        type: true
+      }
     ])
   }
 })
