@@ -10,14 +10,15 @@ export default defineNuxtModule({
   },
   setup() {
     const resolver = createResolver(import.meta.url)
+    const composable = resolver.resolve('./runtime/useSmartState')
     // Aliased: Nuxt ships its own (server-oriented) useState.
     addImports([
-      { name: 'useSmartState', from: resolver.resolve('./runtime/useSmartState') },
-      {
-        name: 'UseSmartStateOptions',
-        from: resolver.resolve('./runtime/useSmartState'),
-        type: true
-      }
+      { name: 'useSmartState', from: composable },
+      { name: 'cookieStorage', from: composable },
+      { name: 'useCookieStorage', from: resolver.resolve('./runtime/useCookieStorage') },
+      { name: 'UseSmartStateOptions', from: composable, type: true },
+      { name: 'StorageLike', from: composable, type: true },
+      { name: 'StandardSchemaV1', from: composable, type: true }
     ])
   }
 })

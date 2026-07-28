@@ -1,7 +1,7 @@
 {
   "name": "nuxt-smart-state",
   "version": "0.1.0",
-  "description": "Nuxt module for vue-smart-state: auto-imported, SSR-safe useSmartState composable with persistence, cross-tab sync, TTL and debounced writes.",
+  "description": "Nuxt module for vue-smart-state: auto-imported, SSR-safe useSmartState composable with persistence, cookie storage without hydration flash, schema validation, versioned migrations, cross-tab sync, TTL and debounced writes.",
   "type": "module",
   "exports": {
     ".": {
@@ -30,9 +30,17 @@
     "composable",
     "persistent",
     "localStorage",
+    "cookie",
     "cross-tab",
+    "broadcastchannel",
     "ttl",
-    "ssr"
+    "schema",
+    "standard-schema",
+    "zod",
+    "valibot",
+    "migration",
+    "ssr",
+    "no-flash"
   ],
   "author": "Luigi Davide Micca <luigimicca94@gmail.com> (https://luigimicca.com)",
   "license": "MIT",
@@ -49,7 +57,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.15.0",
-    "vue-smart-state": "^0.1.0"
+    "vue-smart-state": "^0.2.0"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.8.4",
