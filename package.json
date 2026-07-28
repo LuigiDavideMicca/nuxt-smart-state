@@ -17,6 +17,8 @@
   "scripts": {
     "build": "nuxt-module-build build",
     "dev:prepare": "nuxt-module-build build --stub",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
@@ -61,7 +63,9 @@
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.8.4",
+    "happy-dom": "^20.0.11",
     "nuxt": "^3.15.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   }
 }
