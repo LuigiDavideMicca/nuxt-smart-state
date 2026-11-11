@@ -7,7 +7,10 @@
     "strict": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "#app": ["./node_modules/nuxt/dist/app"]
+    }
   },
   "include": ["src", "tests", "vitest.config.ts"]
 }
