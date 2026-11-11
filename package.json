@@ -1,6 +1,6 @@
 {
   "name": "nuxt-smart-state",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Nuxt module for vue-smart-state: auto-imported, SSR-safe useSmartState composable with persistence, cookie storage without hydration flash, schema validation, versioned migrations, cross-tab sync, TTL and debounced writes.",
   "type": "module",
   "exports": {
